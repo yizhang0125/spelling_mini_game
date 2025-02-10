@@ -27,12 +27,12 @@ class GameController extends Controller
     {
         $request->validate([
             'player_id' => 'required|exists:players,id',
-            'score' => 'required|integer',
+            'score' => 'required|integer'
         ]);
 
         $score = Score::create([
             'player_id' => $request->player_id,
-            'score' => $request->score,
+            'score' => $request->score
         ]);
 
         return response()->json(['score' => $score]);
