@@ -6,6 +6,8 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>Spelling Master Challenge</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
     <style>
@@ -18,13 +20,13 @@
         }
 
         body {
-            font-family: 'Poppins', sans-serif;
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
             background: linear-gradient(135deg, #f6f8ff 0%, #f0f4ff 100%);
             min-height: 100vh;
         }
 
         .game-container {
-            max-width: 800px;
+            max-width: 1400px;
             margin: 0 auto;
             padding: 2rem;
         }
@@ -53,6 +55,7 @@
             align-items: center;
             justify-content: center;
             gap: 1rem;
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
         }
 
         .game-input {
@@ -74,16 +77,32 @@
         }
 
         #word {
-            font-size: 3.5rem;
+            font-size: clamp(2rem, 10vw, 5rem);
             font-weight: 800;
             text-align: center;
-            padding: 2rem;
-            margin: 2rem 0;
+            padding: 3rem 4rem;
+            margin: 2rem auto;
             background: rgba(79, 70, 229, 0.05);
             border-radius: 16px;
-            letter-spacing: 0.5em;
+            letter-spacing: 0.4em;
             color: var(--primary);
+            width: 100%;
+            max-width: none;
+            min-height: 180px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 15px rgba(79, 70, 229, 0.1);
+            border: 2px solid rgba(79, 70, 229, 0.1);
             animation: wordPulse 2s infinite;
+            overflow: hidden;
+            word-break: break-all;
+        }
+
+        #word::-webkit-scrollbar,
+        #word::-webkit-scrollbar-track,
+        #word::-webkit-scrollbar-thumb {
+            display: none;
         }
 
         .game-stats {
@@ -143,12 +162,16 @@
         }
 
         @media (max-width: 768px) {
-            .game-container { padding: 1rem; }
+            .game-container { 
+                padding: 1rem;
+                max-width: 100%;
+            }
             .game-card { padding: 1.5rem; }
             #word { 
-                font-size: 2rem; 
-                padding: 1.5rem;
-                letter-spacing: 0.3em;
+                font-size: 3rem;
+                padding: 2rem;
+                letter-spacing: 0.4em;
+                min-height: 120px;
             }
             .game-stats {
                 grid-template-columns: 1fr;
